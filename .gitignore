@@ -34,3 +34,5 @@ override.tf.json
 terraform.rc
 
 user1.pem
+ansible.log
+ansible.cfg

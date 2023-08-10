@@ -1,0 +1,15 @@
+- name: Print facts
+  hosts: all
+  tasks:
+      # - name: Print free RAM
+      #   debug:
+      #     var: ansible_memory_mb.real.free
+
+      # - name: Print processor
+      #   debug:
+      #     var: ansible_processor[2]
+
+      - name: Print comment
+        debug:
+          msg: "This is web servers name: {{ name }}"
+        when: name is defined

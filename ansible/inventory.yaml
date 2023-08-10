@@ -1,11 +1,11 @@
 all:
   hosts:
     web01:
-      ansible_host: 172.31.12.0
+      ansible_host: 172.31.6.185
     web02:
-      ansible_host: 172.31.4.219
+      ansible_host: 172.31.2.215
     db01:
-      ansible_host: 172.31.1.75
+      ansible_host: 172.31.4.209
 
   children:
     webservers:
@@ -15,6 +15,8 @@ all:
     dbservers:
       hosts:
         db01:
+      vars:
+        name: 'DB_VARIABLE'
     servers:
       children:
         webservers:
@@ -22,6 +24,6 @@ all:
       vars:
         ansible_user: ec2-user
         ansible_ssh_private_key_file: user1.pem
-        ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q ec2-user@44.203.238.9 -i user1.pem"'
+        ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q ec2-user@34.201.56.59 -i user1.pem"'
  
 
