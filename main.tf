@@ -20,10 +20,6 @@ locals {
   }
 }
 
-data "aws_vpc" "default" {
-  default = true
-}
-
 module "ec2_instance_client" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
@@ -35,7 +31,6 @@ module "ec2_instance_client" {
   key_name               = "user1"
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.client-sg.id]
-
   tags = local.tags
 }
 
@@ -48,8 +43,7 @@ module "ec2_instance_control" {
   key_name               = "user1"
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.control-sg.id]
-
-  tags = local.tags
+  tags                   = local.tags
 }
 
 
@@ -75,9 +69,9 @@ resource "aws_security_group" "client-sg" {
   name = "client-sg"
 
   ingress {
-    from_port          = 22
-    to_port            = 22
-    protocol           = "tcp"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
     security_groups = [aws_security_group.control-sg.id]
   }
 
